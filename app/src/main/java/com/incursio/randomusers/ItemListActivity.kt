@@ -9,11 +9,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_SHORT
 
 import com.incursio.randomusers.dummy.DummyContent
+import com.incursio.randomusers.repository.remote.model.ApiResult
+import com.incursio.randomusers.repository.remote.model.User
 import kotlinx.android.synthetic.main.activity_item_list.*
 import kotlinx.android.synthetic.main.item_list_content.view.*
 import kotlinx.android.synthetic.main.item_list.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import timber.log.Timber
 
 /**
  * An activity representing a list of Pings. This activity
@@ -31,8 +39,27 @@ class ItemListActivity : AppCompatActivity() {
      */
     private var twoPane: Boolean = false
 
+    private val onUsersListCallback = object : Callback<ApiResult> {
+        override fun onFailure(call: Call<ApiResult>, t: Throwable) {
+            Toast.makeText(this@ItemListActivity, "Request failed", LENGTH_SHORT).show()
+        }
+
+        override fun onResponse(call: Call<ApiResult>, response: Response<ApiResult>) {
+            if (!response.isSuccessful) {
+                Toast.makeText(this@ItemListActivity, "Request not successful", LENGTH_SHORT).show()
+                Timber.d(response.message())
+                return
+            }
+            Toast.makeText(this@ItemListActivity, "Request was successful", LENGTH_SHORT).show()
+            Timber.d(response.body().toString())
+        }
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        RandomUserApp.randomUsersService.listUsers().enqueue(onUsersListCallback)
         setContentView(R.layout.activity_item_list)
 
         setSupportActionBar(toolbar)

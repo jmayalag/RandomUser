@@ -21,6 +21,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
 }
 
 dependencies {
@@ -34,12 +42,18 @@ dependencies {
     implementation "com.google.android.material:material:$materialVersion"
 
     // Kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "androidx.fragment:fragment-ktx:$fragmentKtxVersion"
     implementation "androidx.core:core-ktx:$coreKtxVersion"
 
     // Util
     implementation "com.jakewharton.timber:timber:$timberVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
 
     // Local unit tests
     testImplementation "junit:junit:$junitVersion"
