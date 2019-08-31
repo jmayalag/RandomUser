@@ -5,7 +5,7 @@ buildscript {
     repositories {
         google()
         jcenter()
-        
+
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.4.2'
@@ -19,10 +19,30 @@ allprojects {
     repositories {
         google()
         jcenter()
-        
+
     }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    appCompatVersion = '1.0.2'
+    androidXLegacySupport = '1.0.0'
+    androidXAnnotations = '1.0.1'
+    recyclerViewVersion = '1.0.0'
+    materialVersion = '1.0.0'
+
+    // Kotlin
+    coreKtxVersion = '1.0.2'
+    fragmentKtxVersion = '1.0.0'
+
+    // Util
+    timberVersion = '4.7.1'
+
+    // Testing
+    junitVersion = '4.12'
+    androidXTestCoreVersion = '1.2.0'
+    espressoVersion = '3.2.0'
 }
