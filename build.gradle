@@ -40,11 +40,13 @@ ext {
     // Kotlin
     coreKtxVersion = '1.0.2'
     fragmentKtxVersion = '1.0.0'
+    coroutinesVersion = '1.2.1'
 
     // Util
     timberVersion = '4.7.1'
     retrofitVersion = '2.6.1'
     okHttpVersion = '3.14.0'
+    picassoVersion = '2.71828'
 
     // Testing
     junitVersion = '4.12'

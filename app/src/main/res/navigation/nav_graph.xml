@@ -7,18 +7,18 @@
 
     <fragment
         android:id="@+id/userList"
-        android:name="com.incursio.randomusers.UserList"
-        android:label="fragment_user_list"
-        tools:layout="@layout/fragment_user_list" >
+        android:name="com.incursio.randomusers.users.UserList"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_user_list">
         <action
             android:id="@+id/action_userList_to_userDetail"
             app:destination="@id/userDetail" />
     </fragment>
     <fragment
         android:id="@+id/userDetail"
-        android:name="com.incursio.randomusers.UserDetail"
-        android:label="fragment_user_detail"
-        tools:layout="@layout/fragment_user_detail" >
+        android:name="com.incursio.randomusers.userdetail.UserDetail"
+        android:label="@string/title_user_detail"
+        tools:layout="@layout/fragment_user_detail">
         <argument
             android:name="userId"
             app:argType="string" />

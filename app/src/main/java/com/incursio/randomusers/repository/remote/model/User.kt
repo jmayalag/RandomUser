@@ -1,5 +1,8 @@
 package com.incursio.randomusers.repository.remote.model
 
+import android.annotation.SuppressLint
+import java.util.*
+
 data class Name(
     val title: String,
     val first: String,
@@ -63,4 +66,10 @@ data class User(
     val id: Id,
     val picture: WebImage,
     val nat: String
-)
+) {
+    // TODO: Capitalize when saving to local storage
+    val fullName
+        @ExperimentalStdlibApi
+        @SuppressLint("DefaultLocale")
+        get() = with(name) { "${first.capitalize(Locale.US)} ${last.capitalize(Locale.US)}" }
+}

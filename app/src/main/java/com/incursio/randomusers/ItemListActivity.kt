@@ -39,27 +39,9 @@ class ItemListActivity : AppCompatActivity() {
      */
     private var twoPane: Boolean = false
 
-    private val onUsersListCallback = object : Callback<ApiResult> {
-        override fun onFailure(call: Call<ApiResult>, t: Throwable) {
-            Toast.makeText(this@ItemListActivity, "Request failed", LENGTH_SHORT).show()
-        }
-
-        override fun onResponse(call: Call<ApiResult>, response: Response<ApiResult>) {
-            if (!response.isSuccessful) {
-                Toast.makeText(this@ItemListActivity, "Request not successful", LENGTH_SHORT).show()
-                Timber.d(response.message())
-                return
-            }
-            Toast.makeText(this@ItemListActivity, "Request was successful", LENGTH_SHORT).show()
-            Timber.d(response.body().toString())
-        }
-
-    }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        RandomUserApp.randomUsersService.listUsers().enqueue(onUsersListCallback)
         setContentView(R.layout.activity_item_list)
 
         setSupportActionBar(toolbar)
