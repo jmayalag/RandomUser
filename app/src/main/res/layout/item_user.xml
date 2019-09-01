@@ -17,7 +17,7 @@
             android:layout_height="96dp"
             android:background="@null"
             android:contentDescription="@string/profilepictureDescription"
-            app:imageUrl="@{user.picture.medium}"
+            app:imageUrl="@{user.picture.thumbnail}"
             tools:src="@tools:sample/avatars" />
     </FrameLayout>
 
