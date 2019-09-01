@@ -1,15 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".userdetail.UserDetail">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:id="@+id/textView"
+    >
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context=".userdetail.UserDetail">
 
-</FrameLayout>
+        <ImageView
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:contentDescription="@string/user_profile_picture"
+            app:imageUrl="@{vm.user.picture.large}"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{vm.user.fullName}"
+            tools:text="@sample/users.json/data/fullName" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="@{vm.user.email}"
+            tools:text="@sample/users.json/data/email" />
+    </LinearLayout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.incursio.randomusers.userdetail.UserDetailViewModel" />
+    </data>
+</layout>

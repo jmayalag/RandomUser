@@ -13,7 +13,8 @@ fun setItems(recyclerView: RecyclerView, items: List<User>) {
 }
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url: String) {
+fun loadImage(view: ImageView, url: String?) {
+    if (url == null) return
     Picasso.get()
         .load(url)
 //        .placeholder(R.drawable.user_placeholder)

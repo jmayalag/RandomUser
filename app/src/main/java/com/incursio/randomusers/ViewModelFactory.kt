@@ -3,6 +3,7 @@ package com.incursio.randomusers
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.incursio.randomusers.repository.remote.UsersRepository
+import com.incursio.randomusers.userdetail.UserDetailViewModel
 import com.incursio.randomusers.users.UsersViewModel
 
 @Suppress("UNCHECKED_CAST")
@@ -13,6 +14,9 @@ class ViewModelFactory(private val usersRepository: UsersRepository) :
         with(modelClass) {
             when {
                 isAssignableFrom(UsersViewModel::class.java) -> UsersViewModel(
+                    usersRepository
+                )
+                isAssignableFrom(UserDetailViewModel::class.java) -> UserDetailViewModel(
                     usersRepository
                 )
                 else -> throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
