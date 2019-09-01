@@ -1,9 +1,8 @@
 package com.incursio.randomusers.users
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -11,8 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.incursio.randomusers.R
 import com.incursio.randomusers.databinding.FragmentUserListBinding
 import com.incursio.randomusers.getViewModelFactory
-import com.incursio.randomusers.repository.remote.model.User
-import com.incursio.randomusers.userdetail.UserDetailArgs
 import timber.log.Timber
 
 class UserList : Fragment() {
@@ -31,6 +28,9 @@ class UserList : Fragment() {
         viewDataBinding = FragmentUserListBinding.inflate(inflater, container, false).apply {
             vm = viewModel
         }
+
+        setupToolbar()
+
         return viewDataBinding.root
     }
 
@@ -43,6 +43,18 @@ class UserList : Fragment() {
         setupNavigation()
 
         viewModel.loadUsers(true)
+    }
+
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).apply {
+            setSupportActionBar(viewDataBinding.toolbar)
+            title = null
+        }
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_user_list, menu)
     }
 
     private fun setupListAdapter() {
