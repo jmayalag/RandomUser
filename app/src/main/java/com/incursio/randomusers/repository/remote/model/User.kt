@@ -72,4 +72,7 @@ data class User(
         @ExperimentalStdlibApi
         @SuppressLint("DefaultLocale")
         get() = with(name) { "${first.capitalize(Locale.US)} ${last.capitalize(Locale.US)}" }
+
+    val idValue
+        get() = id.value
 }

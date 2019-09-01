@@ -6,9 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.incursio.randomusers.R
 import com.incursio.randomusers.databinding.FragmentUserListBinding
 import com.incursio.randomusers.getViewModelFactory
+import com.incursio.randomusers.repository.remote.model.User
+import com.incursio.randomusers.userdetail.UserDetailArgs
 import timber.log.Timber
 
 class UserList : Fragment() {
@@ -53,6 +57,18 @@ class UserList : Fragment() {
     }
 
     private fun setupNavigation() {
+        viewModel.openUserEvent.observe(viewLifecycleOwner, Observer { user ->
+            user?.let {
+                Timber.d("Will show user ${it.fullName}")
+                openUserDetail(user.idValue)
+                viewModel.openedUser()
+            }
+        })
+    }
+
+    private fun openUserDetail(userId: String) {
+        val action = UserListDirections.actionUserListToUserDetail(userId)
+        findNavController().navigate(action)
     }
 }
 

@@ -41,6 +41,7 @@ class RandomUserApp : Application() {
 
         picasso = Picasso.Builder(this)
             .downloader(OkHttp3Downloader(okHttpClient))
+            .indicatorsEnabled(BuildConfig.DEBUG)
             .listener { _, uri, exception ->
                 Timber.e(exception, "Failed to load image: %s", uri)
             }
