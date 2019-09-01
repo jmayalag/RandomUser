@@ -1,5 +1,6 @@
 package com.incursio.randomusers.users
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.incursio.randomusers.R
+import com.incursio.randomusers.ScrollingActivity
 import com.incursio.randomusers.databinding.FragmentUserListBinding
 import com.incursio.randomusers.getViewModelFactory
 import timber.log.Timber
@@ -51,11 +53,23 @@ class UserList : Fragment() {
             title = null
         }
         setHasOptionsMenu(true)
+        viewDataBinding.apply {
+            toolbar.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_find -> {
+                        openSearchBar()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_user_list, menu)
     }
+
 
     private fun setupListAdapter() {
         val viewModel = viewDataBinding.vm
@@ -81,6 +95,12 @@ class UserList : Fragment() {
     private fun openUserDetail(userId: String) {
         val action = UserListDirections.actionUserListToUserDetail(userId)
         findNavController().navigate(action)
+    }
+
+    private fun openSearchBar() {
+        //TODO: Add search bar
+        val intent = Intent(activity, ScrollingActivity::class.java)
+        startActivity(intent)
     }
 }
 

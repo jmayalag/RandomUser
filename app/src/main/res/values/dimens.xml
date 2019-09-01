@@ -4,4 +4,15 @@
     <dimen name="app_bar_height">180dp</dimen>
     <dimen name="item_width">200dp</dimen>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="fab_bottom_padding">72dp</dimen>
+
+    <dimen name="margin_normal">16dp</dimen>
+    <dimen name="margin_small">8dp</dimen>
+    <dimen name="margin_extra_small">4dp</dimen>
+
+    <dimen name="user_detail_content_min_height">555dp</dimen>
+
+    <dimen name="user_detail_app_bar_height">300dp</dimen>
+    <dimen name="toolbar_elevation">5dp</dimen>
 </resources>

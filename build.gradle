@@ -35,7 +35,7 @@ ext {
     androidXLegacySupport = '1.0.0'
     androidXAnnotations = '1.0.1'
     recyclerViewVersion = '1.0.0'
-    materialVersion = '1.0.0'
+    materialVersion = '1.1.0-alpha09'
 
     // Kotlin
     coreKtxVersion = '1.0.2'
