@@ -1,0 +1,33 @@
+{
+  "comment": "Sample User data",
+  "data": [
+    {
+      "fullName": "Roger Kint",
+      "email": "keyser@soze.com"
+    },
+    {
+      "fullName": "John Doe",
+      "email": "john.doe@gmail.com"
+    },
+    {
+      "fullName": "Jane Doe",
+      "email": "jane.doe@gmail.com"
+    },
+    {
+      "fullName": "Alice Smith",
+      "email": "alice@gmail.com"
+    },
+    {
+      "fullName": "Bob Smith",
+      "email": "bob@gmail.com"
+    },
+    {
+      "fullName": "Mallory Trudy",
+      "email": "mallory.trudy@gmail.com"
+    },
+    {
+      "fullName": "Bella Goth",
+      "email": "bella.goth@gmail.com"
+    }
+  ]
+}

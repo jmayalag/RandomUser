@@ -3,9 +3,9 @@ package com.incursio.randomusers.users
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.incursio.randomusers.R
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions.withCrossFade
 import com.incursio.randomusers.repository.remote.model.User
-import com.squareup.picasso.Picasso
 
 @BindingAdapter("items")
 fun setItems(recyclerView: RecyclerView, items: List<User>) {
@@ -13,10 +13,10 @@ fun setItems(recyclerView: RecyclerView, items: List<User>) {
 }
 
 @BindingAdapter("imageUrl")
-fun loadImage(view: ImageView, url: String) {
-    Picasso.get()
+fun loadImage(view: ImageView, url: String?) {
+    if (url.isNullOrBlank()) return
+    Glide.with(view.context)
         .load(url)
-//        .placeholder(R.drawable.user_placeholder)
-        .error(R.drawable.error_image)
+        .transition(withCrossFade())
         .into(view)
 }

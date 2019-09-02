@@ -1,0 +1,15 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32.0"
+    android:viewportHeight="32.0">
+    <path
+        android:name="circle"
+        android:fillColor="?attr/colorSurface"
+        android:pathData="M16,16m-16,0a16,16 0,1 1,32 0a16,16 0,1 1,-32 0" />
+
+    <path
+        android:name="icon"
+        android:fillColor="?attr/colorOnSurface"
+        android:pathData="M22.6667,6L9.3333,6L9.3333,7.6667L22.6667,7.6667ZM9.3333,26L22.6667,26L22.6667,24.3333L9.3333,24.3333ZM22.6667,9.3333L9.3333,9.3333C8.4167,9.3333 7.6667,10.0833 7.6667,11v10c0,0.9167 0.75,1.6667 1.6667,1.6667L22.6667,22.6667c0.9167,0 1.6667,-0.75 1.6667,-1.6667L24.3333,11c0,-0.9167 -0.75,-1.6667 -1.6667,-1.6667zM16,11.625c1.0333,0 1.875,0.8417 1.875,1.875 0,1.0333 -0.8417,1.875 -1.875,1.875 -1.0333,0 -1.875,-0.8417 -1.875,-1.875 0,-1.0333 0.8417,-1.875 1.875,-1.875zM20.1667,20.1667h-8.3333v-1.25c0,-1.3917 2.775,-2.0833 4.1667,-2.0833 1.3917,0 4.1667,0.6917 4.1667,2.0833z" />
+</vector>
