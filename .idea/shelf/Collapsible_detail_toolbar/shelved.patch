@@ -1,0 +1,340 @@
+Index: app/src/main/res/drawable-v21/ic_detail_back.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/drawable-v21/ic_detail_back.xml	(date 1567363841000)
++++ app/src/main/res/drawable-v21/ic_detail_back.xml	(date 1567363841000)
+@@ -0,0 +1,33 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++  ~ Copyright 2019 Google LLC
++  ~
++  ~ Licensed under the Apache License, Version 2.0 (the "License");
++  ~ you may not use this file except in compliance with the License.
++  ~ You may obtain a copy of the License at
++  ~
++  ~     https://www.apache.org/licenses/LICENSE-2.0
++  ~
++  ~ Unless required by applicable law or agreed to in writing, software
++  ~ distributed under the License is distributed on an "AS IS" BASIS,
++  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++  ~ See the License for the specific language governing permissions and
++  ~ limitations under the License.
++  -->
++
++<vector xmlns:android="http://schemas.android.com/apk/res/android"
++    android:width="32dp"
++    android:height="32dp"
++    android:viewportWidth="32.0"
++    android:viewportHeight="32.0">
++
++    <path
++        android:name="circle"
++        android:fillColor="?attr/colorSurface"
++        android:pathData="M16,16m-16,0a16,16 0,1 1,32 0a16,16 0,1 1,-32 0"/>
++
++    <path
++        android:name="arrow"
++        android:fillColor="?attr/colorOnSurface"
++        android:pathData="M20,14.66H10.44l7.45,-7.45L16,5.33l-10.66,10.66 10.66,10.66 1.88,-1.88L10.44,17.33H26.66v-2.66z"/>
++</vector>
+Index: app/src/main/res/animator/show_toolbar.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/animator/show_toolbar.xml	(date 1567363841000)
++++ app/src/main/res/animator/show_toolbar.xml	(date 1567363841000)
+@@ -0,0 +1,38 @@
++<?xml version="1.0" encoding="utf-8"?>
++<!--
++  ~ Copyright 2019 Google LLC
++  ~
++  ~ Licensed under the Apache License, Version 2.0 (the "License");
++  ~ you may not use this file except in compliance with the License.
++  ~ You may obtain a copy of the License at
++  ~
++  ~     https://www.apache.org/licenses/LICENSE-2.0
++  ~
++  ~ Unless required by applicable law or agreed to in writing, software
++  ~ distributed under the License is distributed on an "AS IS" BASIS,
++  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
++  ~ See the License for the specific language governing permissions and
++  ~ limitations under the License.
++  -->
++
++<selector xmlns:android="http://schemas.android.com/apk/res/android">
++
++    <item android:state_activated="true">
++
++        <objectAnimator
++            android:propertyName="translationZ"
++            android:valueTo="@dimen/toolbar_elevation"
++            android:valueType="floatType" />
++
++    </item>
++
++    <item android:state_activated="false">
++
++        <objectAnimator
++            android:propertyName="translationZ"
++            android:valueTo="0dp"
++            android:valueType="floatType" />
++
++    </item>
++
++</selector>
+\ No newline at end of file
+Index: app/src/main/res/values/dimens.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<resources>\n    <dimen name=\"fab_margin\">16dp</dimen>\n    <dimen name=\"app_bar_height\">180dp</dimen>\n    <dimen name=\"item_width\">200dp</dimen>\n    <dimen name=\"text_margin\">16dp</dimen>\n</resources>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/dimens.xml	(date 1567380276000)
++++ app/src/main/res/values/dimens.xml	(date 1567380544000)
+@@ -4,4 +4,16 @@
+     <dimen name="app_bar_height">180dp</dimen>
+     <dimen name="item_width">200dp</dimen>
+     <dimen name="text_margin">16dp</dimen>
++
++    <dimen name="fab_bottom_padding">72dp</dimen>
++
++    <dimen name="margin_normal">16dp</dimen>
++    <dimen name="margin_small">8dp</dimen>
++    <dimen name="margin_extra_small">4dp</dimen>
++
++    <!-- minimum height of plant detail page so that the collapsing toolbar can be shown on every page -->
++    <dimen name="plant_description_min_height">555dp</dimen>
++
++    <dimen name="plant_detail_app_bar_height">278dp</dimen>
++    <dimen name="toolbar_elevation">5dp</dimen>
+ </resources>
+Index: app/src/main/res/values/styles.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n\n    <!-- Base application theme. -->\n    <style name=\"AppTheme\" parent=\"Theme.MaterialComponents.DayNight.NoActionBar\">\n        <item name=\"colorPrimary\">@color/primaryColor</item>\n        <item name=\"colorOnPrimary\">@color/primaryTextColor</item>\n        <item name=\"colorPrimaryDark\">@color/primaryDarkColor</item>\n        <item name=\"colorOnSurface\">@color/black</item>\n        <item name=\"colorAccent\">@color/colorAccent</item>\n        <item name=\"colorSurface\">@color/gray_50</item>\n        <item name=\"colorSecondary\">@color/secondaryDarkColor</item>\n        <item name=\"android:colorBackground\">@color/white</item>\n    </style>\n\n    <style name=\"AppTheme.NoActionBar\">\n        <item name=\"windowActionBar\">false</item>\n        <item name=\"windowNoTitle\">true</item>\n    </style>\n\n    <style name=\"AppTheme.AppBarOverlay\" parent=\"ThemeOverlay.AppCompat.Dark.ActionBar\" />\n\n    <style name=\"AppTheme.PopupOverlay\" parent=\"ThemeOverlay.AppCompat.Light\" />\n</resources>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/styles.xml	(date 1567380276000)
++++ app/src/main/res/values/styles.xml	(date 1567381220000)
+@@ -5,11 +5,7 @@
+         <item name="colorPrimary">@color/primaryColor</item>
+         <item name="colorOnPrimary">@color/primaryTextColor</item>
+         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
+-        <item name="colorOnSurface">@color/black</item>
+-        <item name="colorAccent">@color/colorAccent</item>
+-        <item name="colorSurface">@color/gray_50</item>
+-        <item name="colorSecondary">@color/secondaryDarkColor</item>
+-        <item name="android:colorBackground">@color/white</item>
++        <item name="colorOnSecondary">@color/secondaryTextColor</item>
+     </style>
+ 
+     <style name="AppTheme.NoActionBar">
+@@ -20,4 +16,8 @@
+     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+ 
+     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
++
++    <style name="TextAppearance.Toolbar.Text" parent="TextAppearance.MaterialComponents.Headline5">
++        <item name="android:textColor">?attr/colorOnSurface</item>
++    </style>
+ </resources>
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\n    <string name=\"app_name\">Random Users</string>\n    <string name=\"title_item_detail\">Item Detail</string>\n\n    <!-- TODO: Remove or change this placeholder text -->\n    <string name=\"hello_blank_fragment\">Hello blank fragment</string>\n    <string name=\"title_user_detail\">User Details</string>\n    <string name=\"user_thumbnail_description\">User profile thumbnail</string>\n    <string name=\"user_profile_picture\">User profile picture</string>\n    <string name=\"title_activity_scrolling\">ScrollingActivity</string>\n    <string name=\"large_text\">\n        \"Material is the metaphor.\\n\\n\"\n\n        \"A material metaphor is the unifying theory of a rationalized space and a system of motion.\"\n        \"The material is grounded in tactile reality, inspired by the study of paper and ink, yet \"\n        \"technologically advanced and open to imagination and magic.\\n\"\n        \"Surfaces and edges of the material provide visual cues that are grounded in reality. The \"\n        \"use of familiar tactile attributes helps users quickly understand affordances. Yet the \"\n        \"flexibility of the material creates new affordances that supercede those in the physical \"\n        \"world, without breaking the rules of physics.\\n\"\n        \"The fundamentals of light, surface, and movement are key to conveying how objects move, \"\n        \"interact, and exist in space and in relation to each other. Realistic lighting shows \"\n        \"seams, divides space, and indicates moving parts.\\n\\n\"\n\n        \"Bold, graphic, intentional.\\n\\n\"\n\n        \"The foundational elements of print based design typography, grids, space, scale, color, \"\n        \"and use of imagery guide visual treatments. These elements do far more than please the \"\n        \"eye. They create hierarchy, meaning, and focus. Deliberate color choices, edge to edge \"\n        \"imagery, large scale typography, and intentional white space create a bold and graphic \"\n        \"interface that immerse the user in the experience.\\n\"\n        \"An emphasis on user actions makes core functionality immediately apparent and provides \"\n        \"waypoints for the user.\\n\\n\"\n\n        \"Motion provides meaning.\\n\\n\"\n\n        \"Motion respects and reinforces the user as the prime mover. Primary user actions are \"\n        \"inflection points that initiate motion, transforming the whole design.\\n\"\n        \"All action takes place in a single environment. Objects are presented to the user without \"\n        \"breaking the continuity of experience even as they transform and reorganize.\\n\"\n        \"Motion is meaningful and appropriate, serving to focus attention and maintain continuity. \"\n        \"Feedback is subtle yet clear. Transitions are efﬁcient yet coherent.\\n\\n\"\n\n        \"3D world.\\n\\n\"\n\n        \"The material environment is a 3D space, which means all objects have x, y, and z \"\n        \"dimensions. The z-axis is perpendicularly aligned to the plane of the display, with the \"\n        \"positive z-axis extending towards the viewer. Every sheet of material occupies a single \"\n        \"position along the z-axis and has a standard 1dp thickness.\\n\"\n        \"On the web, the z-axis is used for layering and not for perspective. The 3D world is \"\n        \"emulated by manipulating the y-axis.\\n\\n\"\n\n        \"Light and shadow.\\n\\n\"\n\n        \"Within the material environment, virtual lights illuminate the scene. Key lights create \"\n        \"directional shadows, while ambient light creates soft shadows from all angles.\\n\"\n        \"Shadows in the material environment are cast by these two light sources. In Android \"\n        \"development, shadows occur when light sources are blocked by sheets of material at \"\n        \"various positions along the z-axis. On the web, shadows are depicted by manipulating the \"\n        \"y-axis only. The following example shows the card with a height of 6dp.\\n\\n\"\n\n        \"Resting elevation.\\n\\n\"\n\n        \"All material objects, regardless of size, have a resting elevation, or default elevation \"\n        \"that does not change. If an object changes elevation, it should return to its resting \"\n        \"elevation as soon as possible.\\n\\n\"\n\n        \"Component elevations.\\n\\n\"\n\n        \"The resting elevation for a component type is consistent across apps (e.g., FAB elevation \"\n        \"does not vary from 6dp in one app to 16dp in another app).\\n\"\n        \"Components may have different resting elevations across platforms, depending on the depth \"\n        \"of the environment (e.g., TV has a greater depth than mobile or desktop).\\n\\n\"\n\n        \"Responsive elevation and dynamic elevation offsets.\\n\\n\"\n\n        \"Some component types have responsive elevation, meaning they change elevation in response \"\n        \"to user input (e.g., normal, focused, and pressed) or system events. These elevation \"\n        \"changes are consistently implemented using dynamic elevation offsets.\\n\"\n        \"Dynamic elevation offsets are the goal elevation that a component moves towards, relative \"\n        \"to the component’s resting state. They ensure that elevation changes are consistent \"\n        \"across actions and component types. For example, all components that lift on press have \"\n        \"the same elevation change relative to their resting elevation.\\n\"\n        \"Once the input event is completed or cancelled, the component will return to its resting \"\n        \"elevation.\\n\\n\"\n\n        \"Avoiding elevation interference.\\n\\n\"\n\n        \"Components with responsive elevations may encounter other components as they move between \"\n        \"their resting elevations and dynamic elevation offsets. Because material cannot pass \"\n        \"through other material, components avoid interfering with one another any number of ways, \"\n        \"whether on a per component basis or using the entire app layout.\\n\"\n        \"On a component level, components can move or be removed before they cause interference. \"\n        \"For example, a floating action button (FAB) can disappear or move off screen before a \"\n        \"user picks up a card, or it can move if a snackbar appears.\\n\"\n        \"On the layout level, design your app layout to minimize opportunities for interference. \"\n        \"For example, position the FAB to one side of stream of a cards so the FAB won’t interfere \"\n        \"when a user tries to pick up one of cards.\\n\\n\"\n    </string>\n    <string name=\"action_settings\">Settings</string>\n    <string name=\"action_find\">Find user</string>\n    <string name=\"action_add_contact\">Save contact</string>\n</resources>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(date 1567380276000)
++++ app/src/main/res/values/strings.xml	(date 1567380723000)
+@@ -6,7 +6,7 @@
+     <string name="hello_blank_fragment">Hello blank fragment</string>
+     <string name="title_user_detail">User Details</string>
+     <string name="user_thumbnail_description">User profile thumbnail</string>
+-    <string name="user_profile_picture">User profile picture</string>
++    <string name="user_profile_description">User profile picture</string>
+     <string name="title_activity_scrolling">ScrollingActivity</string>
+     <string name="large_text">
+         "Material is the metaphor.\n\n"
+Index: app/src/main/res/layout/fragment_user_detail.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\n<layout xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n\n    >\n\n    <LinearLayout\n        android:layout_width=\"match_parent\"\n        android:layout_height=\"wrap_content\"\n        android:orientation=\"vertical\"\n        tools:context=\".userdetail.UserDetail\">\n\n        <ImageView\n            android:layout_width=\"150dp\"\n            android:layout_height=\"150dp\"\n            android:contentDescription=\"@string/user_profile_picture\"\n            app:imageUrl=\"@{vm.user.picture.large}\"\n            tools:src=\"@tools:sample/avatars\" />\n\n        <TextView\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:text=\"@{vm.user.fullName}\"\n            tools:text=\"@sample/users.json/data/fullName\" />\n\n        <TextView\n            android:layout_width=\"match_parent\"\n            android:layout_height=\"match_parent\"\n            android:text=\"@{vm.user.email}\"\n            tools:text=\"@sample/users.json/data/email\" />\n    </LinearLayout>\n\n    <data>\n\n        <variable\n            name=\"vm\"\n            type=\"com.incursio.randomusers.userdetail.UserDetailViewModel\" />\n    </data>\n</layout>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/fragment_user_detail.xml	(date 1567380276000)
++++ app/src/main/res/layout/fragment_user_detail.xml	(date 1567381405000)
+@@ -5,31 +5,147 @@
+ 
+     >
+ 
+-    <LinearLayout
++    <androidx.coordinatorlayout.widget.CoordinatorLayout
+         android:layout_width="match_parent"
+-        android:layout_height="wrap_content"
+-        android:orientation="vertical"
+-        tools:context=".userdetail.UserDetail">
++        android:layout_height="match_parent"
++        android:background="?attr/colorSurface"
++        android:fitsSystemWindows="true"
++        tools:context="com.google.samples.apps.sunflower.GardenActivity"
++        tools:ignore="MergeRootFrame">
+ 
+-        <ImageView
+-            android:layout_width="150dp"
+-            android:layout_height="150dp"
+-            android:contentDescription="@string/user_profile_picture"
+-            app:imageUrl="@{vm.user.picture.large}"
+-            tools:src="@tools:sample/avatars" />
++        <androidx.core.widget.NestedScrollView
++            android:id="@+id/plant_detail_scrollview"
++            android:layout_width="match_parent"
++            android:layout_height="match_parent"
++            android:clipToPadding="false"
++            android:paddingBottom="@dimen/fab_bottom_padding"
++            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+ 
+-        <TextView
+-            android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:text="@{vm.user.fullName}"
+-            tools:text="@sample/users.json/data/fullName" />
++            <androidx.constraintlayout.widget.ConstraintLayout
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:layout_margin="@dimen/margin_normal">
++
++                <TextView
++                    android:id="@+id/plant_detail_name"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="@dimen/margin_small"
++                    android:layout_marginEnd="@dimen/margin_small"
++                    android:gravity="center_horizontal"
++                    android:text="@{vm.user.fullName}"
++                    android:textAppearance="?attr/textAppearanceHeadline5"
++                    app:layout_constraintEnd_toEndOf="parent"
++                    app:layout_constraintStart_toStartOf="parent"
++                    app:layout_constraintTop_toTopOf="parent"
++                    tools:text="Apple" />
++
++                <TextView
++                    android:id="@+id/plant_watering_header"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="@dimen/margin_small"
++                    android:layout_marginTop="@dimen/margin_normal"
++                    android:layout_marginEnd="@dimen/margin_small"
++                    android:gravity="center_horizontal"
++                    android:text="Needs watering"
++                    android:textColor="?attr/colorAccent"
++                    android:textStyle="bold"
++                    app:layout_constraintEnd_toEndOf="parent"
++                    app:layout_constraintStart_toStartOf="parent"
++                    app:layout_constraintTop_toBottomOf="@+id/plant_detail_name" />
+ 
+-        <TextView
++                <TextView
++                    android:id="@+id/plant_watering"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="@dimen/margin_small"
++                    android:layout_marginEnd="@dimen/margin_small"
++                    android:gravity="center_horizontal"
++                    android:text="Watering each hour"
++                    app:layout_constraintEnd_toEndOf="parent"
++                    app:layout_constraintStart_toStartOf="parent"
++                    app:layout_constraintTop_toBottomOf="@+id/plant_watering_header"
++                    tools:text="every 7 days" />
++
++                <TextView
++                    android:id="@+id/plant_description"
++                    style="?android:attr/textAppearanceMedium"
++                    android:layout_width="0dp"
++                    android:layout_height="wrap_content"
++                    android:layout_marginStart="@dimen/margin_small"
++                    android:layout_marginTop="@dimen/margin_small"
++                    android:layout_marginEnd="@dimen/margin_small"
++                    android:minHeight="@dimen/plant_description_min_height"
++                    android:textIsSelectable="true"
++                    app:layout_constraintEnd_toEndOf="parent"
++                    app:layout_constraintStart_toStartOf="parent"
++                    app:layout_constraintTop_toBottomOf="@+id/plant_watering"
++                    tools:text="Details about the plant" />
++
++            </androidx.constraintlayout.widget.ConstraintLayout>
++
++        </androidx.core.widget.NestedScrollView>
++
++        <com.google.android.material.appbar.AppBarLayout
++            android:id="@+id/appbar"
+             android:layout_width="match_parent"
+-            android:layout_height="match_parent"
+-            android:text="@{vm.user.email}"
+-            tools:text="@sample/users.json/data/email" />
+-    </LinearLayout>
++            android:layout_height="@dimen/plant_detail_app_bar_height"
++            android:animateLayoutChanges="true"
++            android:background="?attr/colorSurface"
++            android:fitsSystemWindows="true"
++            android:stateListAnimator="@animator/show_toolbar"
++            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
++
++            <com.google.android.material.appbar.CollapsingToolbarLayout
++                android:id="@+id/toolbar_layout"
++                android:layout_width="match_parent"
++                android:layout_height="match_parent"
++                android:fitsSystemWindows="true"
++                app:collapsedTitleGravity="center"
++                app:collapsedTitleTextAppearance="@style/TextAppearance.Toolbar.Text"
++                app:contentScrim="?attr/colorSurface"
++                app:layout_scrollFlags="scroll|exitUntilCollapsed"
++                app:statusBarScrim="?attr/colorSurface"
++                app:title="@{vm.user.fullName}"
++                app:titleEnabled="false"
++                app:toolbarId="@+id/toolbar">
++
++                <ImageView
++                    android:id="@+id/detail_image"
++                    android:layout_width="match_parent"
++                    android:layout_height="@dimen/plant_detail_app_bar_height"
++                    android:contentDescription="@string/user_profile_description"
++                    android:fitsSystemWindows="true"
++                    android:scaleType="centerCrop"
++                    app:imageUrl="@{vm.user.picture.large}"
++                    app:layout_collapseMode="parallax" />
++
++                <androidx.appcompat.widget.Toolbar
++                    android:id="@+id/toolbar"
++                    android:layout_width="match_parent"
++                    android:layout_height="?attr/actionBarSize"
++                    android:background="?attr/colorPrimary"
++                    app:contentInsetStartWithNavigation="0dp"
++                    app:layout_collapseMode="pin"
++                    app:menu="@menu/menu_user_detail"
++                    app:titleTextColor="?attr/colorOnSurface" />
++
++            </com.google.android.material.appbar.CollapsingToolbarLayout>
++
++        </com.google.android.material.appbar.AppBarLayout>
++
++        <com.google.android.material.floatingactionbutton.FloatingActionButton
++            android:id="@+id/fab"
++            style="@style/Widget.MaterialComponents.FloatingActionButton"
++            android:layout_width="wrap_content"
++            android:layout_height="wrap_content"
++            android:layout_margin="@dimen/fab_margin"
++            app:layout_anchor="@id/appbar"
++            app:layout_anchorGravity="bottom|end"
++            app:srcCompat="@drawable/ic_star_24dp" />
++
++    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+ 
+     <data>
+ 

@@ -1,0 +1,57 @@
+Index: app/src/main/res/menu/menu_user_list.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><menu xmlns:android=\"http://schemas.android.com/apk/res/android\"\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\n    xmlns:tools=\"http://schemas.android.com/tools\"\n    tools:context=\"com.incursio.randomusers.ScrollingActivity\">\n    <item\n        android:id=\"@+id/action_find\"\n        android:icon=\"@drawable/ic_search\"\n        android:orderInCategory=\"100\"\n        android:title=\"@string/action_find\"\n        app:showAsAction=\"ifRoom\" />\n</menu>\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/menu/menu_user_list.xml	(date 1567419446000)
++++ app/src/main/res/menu/menu_user_list.xml	(date 1567424068000)
+@@ -7,5 +7,6 @@
+         android:icon="@drawable/ic_search"
+         android:orderInCategory="100"
+         android:title="@string/action_find"
+-        app:showAsAction="ifRoom" />
++        app:actionViewClass="androidx.appcompat.widget.SearchView"
++        app:showAsAction="always|collapseActionView" />
+ </menu>
+Index: app/src/main/java/com/incursio/randomusers/users/UserList.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.incursio.randomusers.users\n\nimport android.os.Bundle\nimport android.view.*\nimport androidx.appcompat.app.AppCompatActivity\nimport androidx.fragment.app.Fragment\nimport androidx.fragment.app.viewModels\nimport androidx.lifecycle.Observer\nimport androidx.navigation.fragment.findNavController\nimport com.incursio.randomusers.R\nimport com.incursio.randomusers.databinding.FragmentUserListBinding\nimport com.incursio.randomusers.getViewModelFactory\nimport timber.log.Timber\n\nclass UserList : Fragment() {\n\n    private val viewModel by viewModels<UsersViewModel> { getViewModelFactory() }\n\n    private lateinit var viewDataBinding: FragmentUserListBinding\n\n    private lateinit var listAdapter: UsersAdapter\n\n    override fun onCreateView(\n        inflater: LayoutInflater, container: ViewGroup?,\n        savedInstanceState: Bundle?\n    ): View? {\n        // Inflate the layout for this fragment\n        viewDataBinding = FragmentUserListBinding.inflate(inflater, container, false).apply {\n            vm = viewModel\n        }\n\n        setupToolbar()\n\n        return viewDataBinding.root\n    }\n\n    override fun onActivityCreated(savedInstanceState: Bundle?) {\n        super.onActivityCreated(savedInstanceState)\n\n        // Set the lifecycle owner to the lifecycle of the view\n        viewDataBinding.lifecycleOwner = viewLifecycleOwner\n        setupListAdapter()\n        setupNavigation()\n\n        viewModel.loadUsers(false)\n    }\n\n    private fun setupToolbar() {\n        (activity as AppCompatActivity).apply {\n            setSupportActionBar(viewDataBinding.toolbar)\n            title = null\n        }\n        setHasOptionsMenu(true)\n        viewDataBinding.apply {\n            toolbar.setOnMenuItemClickListener { item ->\n                when (item.itemId) {\n                    R.id.action_find -> {\n                        openSearchBar()\n                        true\n                    }\n                    else -> false\n                }\n            }\n        }\n    }\n\n    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {\n        inflater.inflate(R.menu.menu_user_list, menu)\n    }\n\n\n    private fun setupListAdapter() {\n        val viewModel = viewDataBinding.vm\n            ?: return Timber.w(\"ViewModel not initialized when attempting to set up adapter.\")\n\n        listAdapter = UsersAdapter(viewModel)\n        viewDataBinding.userList.apply {\n            setHasFixedSize(true)\n            adapter = listAdapter\n        }\n    }\n\n    private fun setupNavigation() {\n        viewModel.openUserEvent.observe(viewLifecycleOwner, Observer { user ->\n            user?.let {\n                Timber.d(\"Will show user ${it.fullName}\")\n                openUserDetail(user.idValue)\n                viewModel.openedUser()\n            }\n        })\n    }\n\n    private fun openUserDetail(userId: String) {\n        val action = UserListDirections.actionUserListToUserDetail(userId)\n        findNavController().navigate(action)\n    }\n\n    private fun openSearchBar() {\n        //TODO: Add search bar\n\n    }\n}\n\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/java/com/incursio/randomusers/users/UserList.kt	(date 1567419446000)
++++ app/src/main/java/com/incursio/randomusers/users/UserList.kt	(date 1567424371000)
+@@ -3,6 +3,7 @@
+ import android.os.Bundle
+ import android.view.*
+ import androidx.appcompat.app.AppCompatActivity
++import androidx.appcompat.widget.SearchView
+ import androidx.fragment.app.Fragment
+ import androidx.fragment.app.viewModels
+ import androidx.lifecycle.Observer
+@@ -66,6 +67,22 @@
+ 
+     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+         inflater.inflate(R.menu.menu_user_list, menu)
++
++        val searchItem = menu.findItem(R.id.action_find)
++        val searchView = searchItem.actionView as SearchView
++        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
++            override fun onQueryTextSubmit(p0: String?): Boolean {
++
++                searchView.clearFocus()
++                return true
++            }
++
++            override fun onQueryTextChange(p0: String?): Boolean {
++                return false
++            }
++
++        })
++        return super.onCreateOptionsMenu(menu, inflater)
+     }
+ 
+ 
