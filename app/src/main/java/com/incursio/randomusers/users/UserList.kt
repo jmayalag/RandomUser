@@ -1,6 +1,5 @@
 package com.incursio.randomusers.users
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
@@ -9,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.incursio.randomusers.R
-import com.incursio.randomusers.ScrollingActivity
 import com.incursio.randomusers.databinding.FragmentUserListBinding
 import com.incursio.randomusers.getViewModelFactory
 import timber.log.Timber
@@ -99,8 +97,7 @@ class UserList : Fragment() {
 
     private fun openSearchBar() {
         //TODO: Add search bar
-        val intent = Intent(activity, ScrollingActivity::class.java)
-        startActivity(intent)
+
     }
 }
 
