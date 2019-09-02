@@ -1,6 +1,9 @@
 package com.incursio.randomusers.users
 
 import androidx.lifecycle.*
+import com.incursio.randomusers.repository.Result
+import com.incursio.randomusers.repository.Result.Success
+import com.incursio.randomusers.repository.Result.Error
 import com.incursio.randomusers.repository.remote.UsersRepository
 import com.incursio.randomusers.repository.remote.model.User
 import kotlinx.coroutines.launch
@@ -35,9 +38,14 @@ class UsersViewModel(private val repository: UsersRepository) : ViewModel() {
         viewModelScope.launch {
             _dataLoading.value = true
 
-            val users = repository.getUsers(forceUpdate)
+            val result = repository.getUsers(forceUpdate)
 
-            _users.value = users
+            if (result is Success) {
+                val users = result.data
+                _users.value = users
+            } else {
+                _users.value = emptyList()
+            }
 
             _dataLoading.value = false
         }
