@@ -11,6 +11,9 @@ interface UsersDao {
     @Query("SELECT * FROM users")
     suspend fun getUsers(): List<User>
 
+    @Query("SELECT * FROM users WHERE isSaved = 1")
+    suspend fun getFavUsers(): List<User>
+
     @Query("SELECT * FROM users WHERE uuid = :uuid")
     suspend fun getUserByUUID(uuid: String): User?
 

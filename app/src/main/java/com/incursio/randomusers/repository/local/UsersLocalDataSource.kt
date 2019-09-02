@@ -33,6 +33,14 @@ class UsersLocalDataSource(
         }
     }
 
+    suspend fun getFavUsers(): Result<List<User>> = withContext(ioDispatcher) {
+        try {
+            Success(usersDao.getFavUsers())
+        } catch (e: Exception) {
+            Error(e)
+        }
+    }
+
     suspend fun findUsers(term: String): Result<List<User>> = withContext(ioDispatcher) {
         try {
             Success(usersDao.findUsers(term))

@@ -13,6 +13,11 @@ class UsersRepository(
     private val remoteDataSource: UsersRemoteDataSource,
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
+
+    suspend fun getFavUsers(): Result<List<User>> {
+        return localDataSource.getFavUsers()
+    }
+
     suspend fun getUsers(forceUpdate: Boolean): Result<List<User>> {
         if (!forceUpdate) {
             Timber.d("get users from local db")

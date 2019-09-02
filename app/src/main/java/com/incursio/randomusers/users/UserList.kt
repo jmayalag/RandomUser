@@ -51,17 +51,6 @@ class UserList : Fragment() {
             title = null
         }
         setHasOptionsMenu(true)
-        viewDataBinding.apply {
-            toolbar.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.action_find -> {
-                        openSearchBar()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -93,11 +82,6 @@ class UserList : Fragment() {
     private fun openUserDetail(userId: String) {
         val action = UserListDirections.actionUserListToUserDetail(userId)
         findNavController().navigate(action)
-    }
-
-    private fun openSearchBar() {
-        //TODO: Add search bar
-
     }
 }
 
