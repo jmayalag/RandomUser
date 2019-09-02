@@ -52,4 +52,7 @@ ext {
     junitVersion = '4.12'
     androidXTestCoreVersion = '1.2.0'
     espressoVersion = '3.2.0'
+
+    // Persistence
+    roomVersion = "2.2.0-beta01"
 }

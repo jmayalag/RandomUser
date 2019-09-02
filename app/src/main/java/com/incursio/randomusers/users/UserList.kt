@@ -3,6 +3,7 @@ package com.incursio.randomusers.users
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -42,7 +43,7 @@ class UserList : Fragment() {
         setupListAdapter()
         setupNavigation()
 
-        viewModel.loadUsers(true)
+        viewModel.loadUsers(false)
     }
 
     private fun setupToolbar() {
@@ -51,21 +52,26 @@ class UserList : Fragment() {
             title = null
         }
         setHasOptionsMenu(true)
-        viewDataBinding.apply {
-            toolbar.setOnMenuItemClickListener { item ->
-                when (item.itemId) {
-                    R.id.action_find -> {
-                        openSearchBar()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_user_list, menu)
+
+        val searchItem = menu.findItem(R.id.action_find)
+        val searchView = searchItem.actionView as SearchView
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(term: String?): Boolean {
+                searchView.clearFocus()
+                return true
+            }
+
+            override fun onQueryTextChange(term: String?): Boolean {
+                term?.let { viewModel.filterLoadedUsers(it) }
+                return false
+            }
+
+        })
+        return super.onCreateOptionsMenu(menu, inflater)
     }
 
 
@@ -93,11 +99,6 @@ class UserList : Fragment() {
     private fun openUserDetail(userId: String) {
         val action = UserListDirections.actionUserListToUserDetail(userId)
         findNavController().navigate(action)
-    }
-
-    private fun openSearchBar() {
-        //TODO: Add search bar
-
     }
 }
 

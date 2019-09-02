@@ -1,6 +1,8 @@
 package com.incursio.randomusers.repository.remote.model
 
 import android.annotation.SuppressLint
+import androidx.room.Embedded
+import androidx.room.Entity
 import com.incursio.randomusers.isoDateToFormatted
 import com.incursio.randomusers.title
 import java.time.LocalDate
@@ -17,21 +19,16 @@ data class Coordinates(
     val longitude: String
 )
 
-data class Timezone(
-    val offset: String,
-    val description: String
-)
-
 data class Location(
     val street: String,
     val city: String,
     val state: String,
     val postcode: String,
-    val coordinates: Coordinates,
-    val timezone: Timezone
+    @Embedded val coordinates: Coordinates
 )
 
 data class Login(
+    val uuid: String,
     val username: String,
     val password: String,
     val salt: String,
@@ -41,14 +38,14 @@ data class Login(
 )
 
 data class DateAge(
-    val date: String,
-    val age: Int
+    val date: String
 ) {
     fun formatted() = date.isoDateToFormatted()
 }
 
 data class Id(
     val name: String,
+    // NOTE: Should be encrypted in a real app
     val value: String
 )
 
@@ -100,19 +97,20 @@ private val nationalities = mapOf(
     "US" to "American"
 ).withDefault { "Unknown" }
 
+@Entity(tableName = "users", primaryKeys = ["uuid"])
 data class User(
     val gender: String,
-    val name: Name,
-    val location: Location,
+    @Embedded(prefix = "name_") val name: Name,
+    @Embedded val location: Location,
     val email: String,
-    val login: Login,
-    val dob: DateAge,
-    val registered: DateAge,
+    @Embedded val login: Login,
+    @Embedded val dob: DateAge,
     val phone: String,
     val cell: String,
-    val id: Id,
-    val picture: WebImage,
-    val nat: String
+    @Embedded(prefix = "id_") val id: Id,
+    @Embedded(prefix = "img_") val picture: WebImage,
+    val nat: String,
+    val isSaved: Boolean
 ) {
     // TODO: Capitalize when saving to local storage
     val fullName
@@ -126,7 +124,7 @@ data class User(
         get() = "${name.title.capitalize(Locale.US)}. $fullName"
 
     val idValue
-        get() = id.value
+        get() = login.uuid
 
     @ExperimentalStdlibApi
     val locationTitle
@@ -137,4 +135,8 @@ data class User(
 
     val country
         get() = countries.getValue(nat)
+
+    // Workaround for databinding
+    val isSavedString
+        get() = if (isSaved) "Favorite" else ""
 }

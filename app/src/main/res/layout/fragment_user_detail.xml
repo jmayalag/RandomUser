@@ -49,7 +49,7 @@
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:gravity="center_horizontal"
-                    android:text="@{vm.user.nationality}"
+                    android:text="@{vm.user.isSavedString}"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -106,7 +106,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.phone}"
                                 android:textIsSelectable="false"
                                 tools:text="66976498" />
@@ -123,7 +123,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.cell}"
                                 android:textIsSelectable="false"
                                 tools:text="40652479" />
@@ -140,7 +140,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.email}"
                                 android:textIsSelectable="false"
                                 tools:text="@sample/users.json/data/email" />
@@ -185,7 +185,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.location.postcode}"
                                 android:textIsSelectable="false"
                                 tools:text="3095" />
@@ -201,7 +201,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{StringUtil.title(vm.user.location.street)}"
                                 android:textIsSelectable="false"
                                 tools:text="Ljan Terrasse 346" />
@@ -217,7 +217,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.locationTitle}"
                                 android:textIsSelectable="false"
                                 tools:text="Vear, Rogaland" />
@@ -234,7 +234,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.country}"
                                 android:textIsSelectable="false"
                                 tools:text="Norway" />
@@ -251,7 +251,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:focusable="false"
-                                android:inputType="none"
+                                android:inputType="none|textNoSuggestions"
                                 android:text="@{vm.user.dob.formatted()}"
                                 android:textIsSelectable="false"
                                 tools:text="12/11/1982" />
@@ -314,14 +314,29 @@
         </com.google.android.material.appbar.AppBarLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab"
+            android:id="@+id/fabAdd"
             style="@style/Widget.MaterialComponents.FloatingActionButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{(view) -> vm.updateUserMarked()}"
+            app:gone="@{vm.user.saved}"
             app:layout_anchor="@id/appbar"
             app:layout_anchorGravity="bottom|end"
             app:srcCompat="@drawable/ic_star" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabRemove"
+            style="@style/Widget.MaterialComponents.FloatingActionButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/fab_margin"
+            android:onClick="@{(view) -> vm.updateUserMarked()}"
+            app:gone="@{!vm.user.saved}"
+            app:layout_anchor="@id/appbar"
+            app:layout_anchorGravity="bottom|end"
+            app:backgroundTint="@color/colorAccent"
+            app:srcCompat="@drawable/ic_block" />
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
