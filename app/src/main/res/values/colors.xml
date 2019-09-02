@@ -13,4 +13,7 @@
     <color name="gray_50_a600">#99fafafa</color>
     <color name="white">#FAFAFA</color>
     <color name="colorAccent">#D81B60</color>
+
+    <drawable name="fab_positive">?attr/colorAccent</drawable>
+    <drawable name="fab_negative">@color/colorAccent</drawable>
 </resources>

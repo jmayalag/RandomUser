@@ -1,6 +1,8 @@
 package com.incursio.randomusers.userdetail
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -53,8 +55,19 @@ class UserDetail : Fragment() {
     }
 
     private fun addUserAsContact() {
-        // TODO: Add user as contact intent
         val user = viewModel.user.value ?: return
         Timber.d("Adding as user ${user.fullName}")
+
+        val intent = Intent(ContactsContract.Intents.Insert.ACTION).apply {
+            type = ContactsContract.RawContacts.CONTENT_TYPE
+            putExtra(ContactsContract.Intents.Insert.PHONE, user.phone)
+            putExtra(
+                ContactsContract.Intents.Insert.PHONE_TYPE,
+                ContactsContract.CommonDataKinds.Phone.TYPE_HOME
+            )
+            putExtra(ContactsContract.Intents.Insert.NAME, user.fullName)
+        }
+
+        startActivity(intent)
     }
 }

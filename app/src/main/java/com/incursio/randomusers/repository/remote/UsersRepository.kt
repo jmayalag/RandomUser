@@ -74,4 +74,8 @@ class UsersRepository(
     private suspend fun refreshLocalDataSource(users: List<User>) {
         localDataSource.saveUsers(users)
     }
+
+    suspend fun updateUser(userId: String, isSaved: Boolean) {
+        localDataSource.updateUser(userId, isSaved)
+    }
 }

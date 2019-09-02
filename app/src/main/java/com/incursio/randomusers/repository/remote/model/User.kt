@@ -135,4 +135,8 @@ data class User(
 
     val country
         get() = countries.getValue(nat)
+
+    // Workaround for databinding
+    val isSavedString
+        get() = if (isSaved) "Saved" else "Not Saved"
 }

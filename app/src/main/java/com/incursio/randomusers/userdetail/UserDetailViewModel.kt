@@ -36,6 +36,19 @@ class UserDetailViewModel(private val repository: UsersRepository) : ViewModel()
         }
     }
 
+    fun updateUserMarked() {
+        val user = user.value ?: return
+
+        val newValue = !user.isSaved
+        Timber.d("Update user ${user.fullName} to saved: $newValue")
+
+        viewModelScope.launch {
+            repository.updateUser(user.idValue, newValue)
+        }
+
+        _user.value = user.copy(isSaved = newValue)
+    }
+
     private fun onUserLoaded(user: User) {
         _user.value = user
         _isDataAvailable.value = true
