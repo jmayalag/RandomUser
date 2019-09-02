@@ -9,18 +9,32 @@
         android:layout_height="match_parent"
         tools:context=".users.UserList">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/no_users_found"
+            android:textAppearance="?attr/textAppearanceHeadline4"
+            app:gone="@{!vm.hasNoUsers &amp;&amp; !vm.dataLoading}" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userList"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="center_horizontal"
             android:clipToPadding="true"
+            app:gone="@{vm.hasNoUsers}"
             app:items="@{vm.users}"
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             app:spanCount="4"
             tools:listitem="@layout/item_user" />
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:gone="@{!vm.dataLoading}" />
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBar"

@@ -9,6 +9,8 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 
 class UsersViewModel(private val repository: UsersRepository) : ViewModel() {
+    private var searchTerm: String = ""
+
     private val _users = MutableLiveData<List<User>>().apply { value = emptyList() }
     val users: LiveData<List<User>> = _users
 
@@ -62,13 +64,27 @@ class UsersViewModel(private val repository: UsersRepository) : ViewModel() {
 
             if (result is Success) {
                 val users = result.data
-                _users.value = users
+                onDataLoaded(users)
             } else {
                 _users.value = emptyList()
             }
 
             _dataLoading.value = false
         }
+    }
+
+    private fun onDataLoaded(users: List<User>) {
+        if (searchTerm.isBlank()) {
+            _users.value = users
+        } else {
+            _users.value = users.filter { it.fullName.contains(searchTerm) }
+        }
+    }
+
+
+    fun filterLoadedUsers(term: String) {
+        searchTerm = term
+        loadUsers(false)
     }
 
     fun refresh() {

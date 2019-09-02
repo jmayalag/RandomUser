@@ -23,4 +23,5 @@
     <string name="label_country">Country</string>
     <string name="label_dob">Birth date</string>
     <string name="user_fav">Favorite user indicator</string>
+    <string name="no_users_found">No users found</string>
 </resources>

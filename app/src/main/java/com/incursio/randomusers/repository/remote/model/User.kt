@@ -138,5 +138,5 @@ data class User(
 
     // Workaround for databinding
     val isSavedString
-        get() = if (isSaved) "Saved" else "Not Saved"
+        get() = if (isSaved) "Favorite" else ""
 }
