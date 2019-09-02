@@ -24,64 +24,242 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_margin="@dimen/margin_normal">
+                android:layout_margin="@dimen/margin_normal"
+                android:minHeight="@dimen/user_detail_content_min_height">
 
                 <TextView
-                    android:id="@+id/plant_detail_name"
+                    android:id="@+id/user_title_name"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:gravity="center_horizontal"
-                    android:text="@{vm.user.fullName}"
+                    android:text="@{vm.user.titleAndName}"
                     android:textAppearance="?attr/textAppearanceHeadline5"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Apple" />
+                    tools:text="@sample/users.json/data/fullName" />
 
                 <TextView
-                    android:id="@+id/plant_watering_header"
+                    android:id="@+id/user_nationality"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:gravity="center_horizontal"
-                    android:text="Needs watering"
+                    android:text="@{vm.user.nationality}"
                     android:textColor="?attr/colorAccent"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/plant_detail_name" />
+                    app:layout_constraintTop_toBottomOf="@id/user_title_name"
+                    tools:text="Norwegian" />
 
                 <TextView
-                    android:id="@+id/plant_watering"
+                    android:id="@+id/user_gender"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
                     android:layout_marginEnd="@dimen/margin_small"
                     android:gravity="center_horizontal"
-                    android:text="Watering each hour"
+                    android:text="@{StringUtil.title(vm.user.gender)}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/plant_watering_header"
-                    tools:text="every 7 days" />
+                    app:layout_constraintTop_toBottomOf="@id/user_nationality"
+                    tools:text="Male" />
 
-                <TextView
-                    android:id="@+id/plant_description"
-                    style="?android:attr/textAppearanceMedium"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/user_contact_card"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/margin_small"
-                    android:layout_marginTop="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
                     android:layout_marginEnd="@dimen/margin_small"
-                    android:minHeight="@dimen/user_detail_content_min_height"
-                    android:textIsSelectable="true"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/plant_watering"
-                    tools:text="Details about the plant" />
+                    app:layout_constraintTop_toBottomOf="@id/user_gender">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/margin_extra_small">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:gravity="center"
+                            android:text="@string/card_title_contact"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="?attr/colorAccent" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_phone"
+                            app:startIconDrawable="@drawable/ic_phone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.phone}"
+                                android:textIsSelectable="false"
+                                tools:text="66976498" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_cellphone"
+                            app:startIconDrawable="@drawable/ic_cellphone">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.cell}"
+                                android:textIsSelectable="false"
+                                tools:text="40652479" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_email"
+                            app:startIconDrawable="@drawable/ic_email">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.email}"
+                                android:textIsSelectable="false"
+                                tools:text="@sample/users.json/data/email" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/user_info_card"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/margin_small"
+                    android:layout_marginTop="@dimen/margin_normal"
+                    android:layout_marginEnd="@dimen/margin_small"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/user_contact_card">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingBottom="@dimen/margin_extra_small">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/margin_small"
+                            android:gravity="center"
+                            android:text="@string/card_title_info"
+                            android:textAppearance="?attr/textAppearanceHeadline6"
+                            android:textColor="?attr/colorAccent" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_postcode"
+                            app:startIconDrawable="@drawable/ic_post">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.location.postcode}"
+                                android:textIsSelectable="false"
+                                tools:text="3095" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_street"
+                            app:startIconDrawable="@drawable/ic_location">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{StringUtil.title(vm.user.location.street)}"
+                                android:textIsSelectable="false"
+                                tools:text="Ljan Terrasse 346" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_location"
+                            app:startIconDrawable="@drawable/ic_city">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.locationTitle}"
+                                android:textIsSelectable="false"
+                                tools:text="Vear, Rogaland" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_country"
+                            app:startIconDrawable="@drawable/ic_earth">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.country}"
+                                android:textIsSelectable="false"
+                                tools:text="Norway" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="@string/label_dob"
+                            app:startIconDrawable="@drawable/ic_cake">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:focusable="false"
+                                android:inputType="none"
+                                android:text="@{vm.user.dob.formatted()}"
+                                android:textIsSelectable="false"
+                                tools:text="12/11/1982" />
+
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -148,6 +326,8 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <data>
+
+        <import type="com.incursio.randomusers.StringUtil" />
 
         <variable
             name="vm"

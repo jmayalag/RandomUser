@@ -6,9 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
+import com.incursio.randomusers.R
 import com.incursio.randomusers.databinding.FragmentUserDetailBinding
 import com.incursio.randomusers.getViewModelFactory
+import timber.log.Timber
 
 class UserDetail : Fragment() {
     private val args: UserDetailArgs by navArgs()
@@ -27,21 +30,31 @@ class UserDetail : Fragment() {
                 lifecycleOwner = viewLifecycleOwner
             }
 
-//        setupToolbar()
+        setupToolbar()
         viewModel.start(args.userId)
 
         return viewDataBinding.root
     }
 
     private fun setupToolbar() {
-//        val navController = findNavController()
-//        val appBarConfiguration = AppBarConfiguration(navController.graph)
-//
-//        (activity as AppCompatActivity).apply {
-//            setSupportActionBar(viewDataBinding.toolbar)
-//        }
-//        viewDataBinding.apply {
-//            toolbarLayout.setupWithNavController(toolbar, navController, appBarConfiguration)
-//        }
+        viewDataBinding.toolbar.apply {
+            setNavigationOnClickListener { v -> v.findNavController().navigateUp() }
+
+            setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_add_contact -> {
+                        addUserAsContact()
+                        true
+                    }
+                    else -> false
+                }
+            }
+        }
+    }
+
+    private fun addUserAsContact() {
+        // TODO: Add user as contact intent
+        val user = viewModel.user.value ?: return
+        Timber.d("Adding as user ${user.fullName}")
     }
 }
