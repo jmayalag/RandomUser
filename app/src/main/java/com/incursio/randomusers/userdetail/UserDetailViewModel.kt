@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.incursio.randomusers.repository.Result
 import com.incursio.randomusers.repository.remote.UsersRepository
 import com.incursio.randomusers.repository.remote.model.User
 import kotlinx.coroutines.launch
@@ -23,12 +24,12 @@ class UserDetailViewModel(private val repository: UsersRepository) : ViewModel()
     fun start(userId: String) {
         _dataLoading.value = true
         viewModelScope.launch {
-            val user = repository.getUser(userId)
 
-            if (user != null) {
-                onUserLoaded(user)
-            } else {
-                onDataNotAvailable(userId)
+            with(repository.getUser(userId)) {
+                when (this) {
+                    is Result.Success -> onUserLoaded(data)
+                    is Result.Error -> onDataNotAvailable(userId, exception)
+                }
             }
 
             _dataLoading.value = false
@@ -40,9 +41,9 @@ class UserDetailViewModel(private val repository: UsersRepository) : ViewModel()
         _isDataAvailable.value = true
     }
 
-    private fun onDataNotAvailable(userId: String) {
+    private fun onDataNotAvailable(userId: String, cause: Exception) {
         _user.value = null
         _isDataAvailable.value = false
-        Timber.w("Data not available for userId: $userId")
+        Timber.w(cause, "Data not available for userId: $userId")
     }
 }

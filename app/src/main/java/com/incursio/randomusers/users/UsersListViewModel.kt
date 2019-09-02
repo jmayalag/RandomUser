@@ -23,7 +23,7 @@ class UsersViewModel(private val repository: UsersRepository) : ViewModel() {
     val openUserEvent: LiveData<User?> = _selectedUser
 
     init {
-//        loadUsers(true)
+//        loadUsers(false)
     }
 
     fun openUser(user: User) {

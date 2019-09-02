@@ -8,6 +8,7 @@ import com.incursio.randomusers.repository.remote.model.User
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class UsersLocalDataSource(
     private val usersDao: UsersDao,
@@ -45,6 +46,7 @@ class UsersLocalDataSource(
     }
 
     suspend fun saveUsers(users: List<User>) = withContext(ioDispatcher) {
+        Timber.v("Saving ${users.size} users to db")
         usersDao.insertUsers(users)
     }
 

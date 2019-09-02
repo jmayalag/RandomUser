@@ -18,6 +18,7 @@ class UsersRemoteDataSource(
         }
     }
 
+    @Deprecated("Should fetch from local data source only")
     suspend fun getUser(userId: String): User? {
         return service.listUsers().results.find { it.idValue == userId }
     }

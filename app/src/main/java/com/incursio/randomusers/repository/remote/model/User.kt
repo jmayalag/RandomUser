@@ -124,7 +124,7 @@ data class User(
         get() = "${name.title.capitalize(Locale.US)}. $fullName"
 
     val idValue
-        get() = id.value
+        get() = login.uuid
 
     @ExperimentalStdlibApi
     val locationTitle

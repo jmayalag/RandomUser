@@ -42,7 +42,7 @@ class UserList : Fragment() {
         setupListAdapter()
         setupNavigation()
 
-        viewModel.loadUsers(true)
+        viewModel.loadUsers(false)
     }
 
     private fun setupToolbar() {
